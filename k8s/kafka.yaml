@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: kafka
+  labels:
+    app: kafka
+spec:
+  serviceName: kafka-client
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka
+  template:
+    metadata:
+      labels:
+        app: kafka
+    spec:
+      containers:
+        - name: kafka-container
+          image: bitnami/kafka
+          ports:
+            - containerPort: 9092
+          env:
+            - name: replicas
+              value: '1'
+            - name: namespace
+              value: infrastructure

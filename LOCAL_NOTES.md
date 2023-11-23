@@ -225,8 +225,40 @@ func main() {
 }
 ````
 
-
 ### How build docker
+
+- Run Kafka
+
+````
+docker volume create my-kafka-vol
+cd docker
+docker-compose up -d
+````
+
+- Create and check a topic
+
+````
+# Log in to you Kafka broker
+docker exec -it docker-kafka-1 /bin/bash
+
+# Check version of Kafka
+kafka-topics.sh --version
+
+# List all current topics
+kafka-topics.sh --bootstrap-server localhost:9092 --list
+
+# Create a test-topic
+kafka-topics.sh --bootstrap-server localhost:9092 --create --replication-factor 1 --partitions 2 --topic test_topic
+
+# Describe the test-topic
+kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic test_topic
+````
+
+- Same but deployed as Kubernetes StatefulSet (Incomplete)
+````
+kubectl create namespace infrastructure
+kubectl apply -f k8s/kafka.yml
+````
 
 ### How build run server
 
