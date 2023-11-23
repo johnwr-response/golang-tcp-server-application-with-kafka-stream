@@ -266,6 +266,12 @@ kubectl apply -f k8s/kafka.yml
 
 ### How build working example
 
+- Run server:  
+```go run main.go```
+
+- Run client:  
+  ```go run client.go```
+
 ### How build tcp server
 
 ### How build kafka producer
